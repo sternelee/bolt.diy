@@ -18,4 +18,8 @@ interface Env {
   XAI_API_KEY: string;
   PERPLEXITY_API_KEY: string;
   AWS_BEDROCK_CONFIG: string;
+  IFLOW_API_KEY: string;
+  WISDOM_API_KEY: string;
+  VERCEL_API_KEY: string;
+  SILICONFLOW_API_KEY: string;
 }

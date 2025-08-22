@@ -30,7 +30,10 @@ type ProviderName =
   | 'OpenRouter'
   | 'Perplexity'
   | 'Together'
-  | 'XAI';
+  | 'XAI'
+  | 'Vercel'
+  | 'Wisdom'
+  | 'Iflow';
 
 // Update the PROVIDER_ICONS type to use the ProviderName type
 const PROVIDER_ICONS: Record<ProviderName, IconType> = {
@@ -48,6 +51,9 @@ const PROVIDER_ICONS: Record<ProviderName, IconType> = {
   Perplexity: SiPerplexity,
   Together: BsCloud,
   XAI: BsRobot,
+  Vercel: BsCloud,
+  Wisdom: BsCloud,
+  Iflow: BsCloud,
 };
 
 // Update PROVIDER_DESCRIPTIONS to use the same type

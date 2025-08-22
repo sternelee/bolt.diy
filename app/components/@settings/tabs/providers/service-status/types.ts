@@ -12,7 +12,10 @@ export type ProviderName =
   | 'OpenRouter'
   | 'Perplexity'
   | 'Together'
-  | 'XAI';
+  | 'XAI'
+  | 'Wisdom'
+  | 'Iflow'
+  | 'Vercel';
 
 export type ServiceStatus = {
   provider: ProviderName;
