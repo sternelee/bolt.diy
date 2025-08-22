@@ -26,7 +26,10 @@ type ProviderName =
   | 'OpenRouter'
   | 'Perplexity'
   | 'Together'
-  | 'XAI';
+  | 'XAI'
+  | 'Vercel'
+  | 'Wisdom'
+  | 'Iflow';
 
 type ServiceStatus = {
   provider: ProviderName;
@@ -170,6 +173,24 @@ const PROVIDER_STATUS_URLS: Record<ProviderName, ProviderConfig> = {
     },
     testModel: 'deepseek-chat',
   },
+  Vercel: {
+    statusUrl: 'https://status.vercel.com/',
+    apiUrl: 'https://ai-gateway.vercel.sh/v1/models',
+    headers: {},
+    testModel: 'anthropic/claude-sonnet-4',
+  },
+  Wisdom: {
+    statusUrl: 'https://status.wisdom.ai/',
+    apiUrl: 'https://wisdom-gate.juheapi.com/v1/models',
+    headers: {},
+    testModel: 'wisdom-ai-gemini-2.5-flash',
+  },
+  Iflow: {
+    statusUrl: 'https://status.iflow.cn/',
+    apiUrl: 'https://apis.iflow.cn/v1/models',
+    headers: {},
+    testModel: 'Qwen3-Coder',
+  },
 };
 
 const PROVIDER_ICONS: Record<ProviderName, IconType> = {
@@ -186,6 +207,9 @@ const PROVIDER_ICONS: Record<ProviderName, IconType> = {
   Together: BsCloud,
   XAI: BsRobot,
   Deepseek: BiCodeBlock,
+  Vercel: BsCloud,
+  Wisdom: BsCloud,
+  Iflow: BsCloud,
 };
 
 const ServiceStatusTab = () => {
@@ -220,6 +244,9 @@ const ServiceStatusTab = () => {
         OpenRouter: 'OPEN_ROUTER_API_KEY',
         XAI: 'XAI_API_KEY',
         Deepseek: 'DEEPSEEK_API_KEY',
+        Vercel: 'VERCEL_API_KEY',
+        Wisdom: 'WISDOM_API_KEY',
+        Iflow: 'IFLOW_API_KEY',
       };
 
       const envKey = envKeyMap[provider];
@@ -478,6 +505,9 @@ const ServiceStatusTab = () => {
             'Groq',
             'Perplexity',
             'Together',
+            'Vercel',
+            'Wisdom',
+            'Iflow',
           ].includes(provider);
 
           if (hasPublicStatus) {

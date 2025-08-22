@@ -13,6 +13,9 @@ import { OpenRouterStatusChecker } from './providers/openrouter';
 import { PerplexityStatusChecker } from './providers/perplexity';
 import { TogetherStatusChecker } from './providers/together';
 import { XAIStatusChecker } from './providers/xai';
+import { VercelStatusChecker } from './providers/vercel';
+import { WisdomStatusChecker } from './providers/wisdom';
+import { IflowStatusChecker } from './providers/iflow';
 
 export class ProviderStatusCheckerFactory {
   private static _providerConfigs: Record<ProviderName, ProviderConfig> = {
@@ -88,6 +91,24 @@ export class ProviderStatusCheckerFactory {
       headers: {},
       testModel: 'grok-1',
     },
+    Vercel: {
+      statusUrl: 'https://status.vercel.com/',
+      apiUrl: 'https://ai-gateway.vercel.sh/v1/models',
+      headers: {},
+      testModel: 'anthropic/claude-sonnet-4',
+    },
+    Wisdom: {
+      statusUrl: 'https://status.wisdom.ai/',
+      apiUrl: 'https://wisdom-gate.juheapi.com/v1/models',
+      headers: {},
+      testModel: 'wisdom-ai-gemini-2.5-flash',
+    },
+    Iflow: {
+      statusUrl: 'https://status.iflow.cn/',
+      apiUrl: 'https://apis.iflow.cn/v1/models',
+      headers: {},
+      testModel: 'Qwen3-Coder',
+    },
   };
 
   static getChecker(provider: ProviderName): BaseProviderChecker {
@@ -122,6 +143,12 @@ export class ProviderStatusCheckerFactory {
         return new TogetherStatusChecker(config);
       case 'XAI':
         return new XAIStatusChecker(config);
+      case 'Vercel':
+        return new VercelStatusChecker(config);
+      case 'Wisdom':
+        return new WisdomStatusChecker(config);
+      case 'Iflow':
+        return new IflowStatusChecker(config);
       default:
         return new (class extends BaseProviderChecker {
           async checkStatus(): Promise<StatusCheckResult> {
